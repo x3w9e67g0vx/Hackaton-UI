@@ -22,7 +22,7 @@
 
 Проект разработан в рамках учебной/практической работы.
 
-📄 Полная документация проекта: :contentReference[oaicite:0]{index=0}
+📄 Полная документация проекта: [Открыть документ](https://docs.google.com/document/d/1V-JB0t4jxZB4KJDHFmSvhAtMo0K2u0NJjgFDRqIVK9E/edit?usp=sharing)
 
 ---
 
