@@ -1,0 +1,132 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:HackatonUi.ViewModels"
+             xmlns:models="clr-namespace:HackatonUi.Models"
+             xmlns:local="clr-namespace:HackatonUi.Converters"
+             x:Class="HackatonUi.Views.ObjectsView"
+             x:DataType="viewModels:ObjectsViewModel"
+             Background="#1e1e2f">
+    
+    <UserControl.Styles>
+        <!-- Стили для кнопок -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4a4a7f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#5a5a8f"/>
+        </Style>
+        
+        <!-- Стили для текстовых полей -->
+        <Style Selector="TextBox">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Background" Value="#2a2a3f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#3a3a5f"/>
+            <Setter Property="CaretBrush" Value="White"/>
+        </Style>
+        
+        <!-- Стили для списка -->
+        <Style Selector="ListBox">
+            <Setter Property="Background" Value="#2a2a3f"/>
+            <Setter Property="BorderBrush" Value="#3a3a5f"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem:selected">
+            <Setter Property="Background" Value="#3a3a5f"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem:pointerover">
+            <Setter Property="Background" Value="#3a3a5f77"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <UserControl.Resources>
+        <local:NullToBoolConverter x:Key="NullToBoolConverter"/>
+        <local:RoleToIsEnabledConverter x:Key="RoleToIsEnabledConverter"/>
+    </UserControl.Resources>
+    
+    <Panel>
+        <!-- Фоновые декоративные элементы -->
+        <Ellipse Width="180" Height="180" Fill="#2a2a3f" Opacity="0.5" 
+                 HorizontalAlignment="Right" VerticalAlignment="Top"
+                 Margin="0 -90 -90 0"/>
+        <Ellipse Width="120" Height="120" Fill="#3a3a5f" Opacity="0.3"
+                 HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                 Margin="-60 0 0 -60"/>
+        
+        <!-- Оригинальная структура без изменений -->
+        <StackPanel Margin="20">
+            <TextBlock Text="Объекты" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="White"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить" Click="OpenAddBuilding_Click" Margin="5"
+                        IsEnabled="{Binding IsUserAllowed}"/>
+                <Button Content="Редактировать" Click="OpenEditBuilding_Click" Margin="5"
+                        IsEnabled="{Binding IsUserAllowed}"/>
+                <Button Content="Удалить" Command="{Binding DeleteBuildingCommand}" Margin="5"
+                        IsEnabled="{Binding IsUserAllowed}"/>
+                <Button Content="Атрибуты" Click="OpenAddAttribute_Click" Margin="5"
+                        IsEnabled="{Binding IsUserAllowed}"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBox Width="200" Text="{Binding SearchTerm}" Watermark="Поиск по адресу"/>
+                <Button Content="Поиск" Command="{Binding SearchCommand}" Margin="5,0,0,0"/>
+            </StackPanel>
+            
+            <ListBox ItemsSource="{Binding Buildings}" 
+                     SelectedItem="{Binding SelectedBuilding}" 
+                     Margin="5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Building">
+                        <TextBlock Text="{Binding Address}" Foreground="White"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <StackPanel Margin="10"
+                        IsVisible="{Binding SelectedBuilding, Converter={StaticResource NullToBoolConverter}}">
+                <TextBlock Text="Детали выбранного здания:" FontWeight="Bold" Margin="0,10,0,5" Foreground="White"/>
+                <TextBlock Text="{Binding SelectedBuilding.Address, StringFormat='Адрес: {0}'}" Foreground="White"/>
+                <TextBlock Text="{Binding SelectedBuilding.CadastralNumber, StringFormat='Кадастровый номер: {0}'}" Foreground="White"/>
+                <TextBlock Text="{Binding SelectedBuilding.Floors, StringFormat='Этажи: {0}'}" Foreground="White"/>
+                <TextBlock Text="{Binding SelectedBuilding.Area, StringFormat='Площадь: {0}'}" Foreground="White"/>
+                
+                <TextBlock Text="Атрибуты:" FontWeight="Bold" Margin="0,10,0,5" Foreground="White"/>
+                <ItemsControl ItemsSource="{Binding CurrentBuildingAttributes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="models:BuildingAttribute">
+                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                <TextBlock Text="{Binding Section}" Foreground="White"/>
+                                <TextBlock Text=":" Foreground="White"/>
+                                <TextBlock Text="{Binding Key}" Foreground="White"/>
+                                <TextBlock Text="=" Foreground="White"/>
+                                <TextBlock Text="{Binding Value}" Foreground="White"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+    </Panel>
+</UserControl>

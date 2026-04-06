@@ -1,0 +1,92 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:HackatonUi.ViewModels"
+             x:Class="HackatonUi.Views.HomeView"
+             Background="#1e1e2f"
+             x:DataType="viewModels:MainWindowViewModel">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0" Height="40">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Spacing="10">
+                <TextBlock Text="{Binding CurrentUser.Username}" 
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Bold"/>
+
+                <Button Content="Выйти" 
+                        Click="OnLogoutClick"
+                        Background="Transparent" 
+                        Foreground="White"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="0,20,0,40" HorizontalAlignment="Center">
+            <TextBlock Text="Добро пожаловать в систему управления объектами"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"/>
+            <TextBlock Text="В этом приложении вы можете управлять проблемными объектами, загружать документы и фото,
+импортировать данные из XML, работать с протоколами решений, контролировать исполнение и разграничивать доступ."
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       Foreground="#ccc"
+                       TextAlignment="Center"
+                       Margin="0,20,0,0"
+                       MaxWidth="800"/>
+        </StackPanel>
+
+        <!-- Карточки -->
+        <UniformGrid Grid.Row="2" Columns="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,40">
+            <Button Tag="Objects" Click="Navigate_Click" Background="#2c3e50" CornerRadius="10" Margin="10" Width="250" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/iconbuildings.png" Width="60" Height="60"/>
+                    <TextBlock Text="Карточки объектов" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Tag="Documents" Click="Navigate_Click" Background="#27ae60" CornerRadius="10" Margin="10" Width="250" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/documents.png" Width="60" Height="60"/>
+                    <TextBlock Text="Документы и фото" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Tag="XmlImport" Click="Navigate_Click" Background="#e67e22" CornerRadius="10" Margin="10" Width="260" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/xml.png" Width="60" Height="60"/>
+                    <TextBlock Text="Импорт из XML" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Tag="Protocols" Click="Navigate_Click" Background="#9b59b6" CornerRadius="10" Margin="10" Width="250" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/protocol.png" Width="60" Height="60"/>
+                    <TextBlock Text="Протоколы решений" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Tag="Control" Click="Navigate_Click" Background="#3498db" CornerRadius="10" Margin="10" Width="250" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/control.png" Width="60" Height="60"/>
+                    <TextBlock Text="Контроль исполнения" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Tag="Users" Click="Navigate_Click" Background="#f39c12" CornerRadius="10" Margin="10" Width="260" Height="150">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Assets/user.png" Width="60" Height="60"/>
+                    <TextBlock Text="Управление пользователями" Foreground="White" FontSize="18" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+        </UniformGrid>
+    </Grid>
+</UserControl>

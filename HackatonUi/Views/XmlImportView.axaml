@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:HackatonUi.ViewModels"
+             x:Class="HackatonUi.Views.XmlImportView"
+             x:DataType="viewModels:XmlImportViewModel">
+    <StackPanel Margin="10" Spacing="10">
+        <TextBlock Text="Импорт зданий из XML" 
+                   FontSize="20" 
+                   FontWeight="Bold" 
+                   Foreground="White"/>
+    
+        <StackPanel Orientation="Horizontal" Spacing="5">
+            <TextBox x:Name="FilePathBox" 
+                     Background="#2a2a3f" 
+                     Foreground="White" 
+                     Watermark="Введите путь к XML файлу" 
+                     Width="250"/>
+            <Button Content="Выбрать файл" Click="SelectXmlFile_Click"/>
+        </StackPanel>
+    
+        <Button Content="Импортировать" Click="ImportXml_Click" 
+                Background="#4a4a7f" Foreground="White" Padding="10" IsEnabled="{Binding IsUserAllowed}"/>
+    
+        <TextBlock x:Name="StatusText" Foreground="Red"/>
+    </StackPanel>
+</UserControl>

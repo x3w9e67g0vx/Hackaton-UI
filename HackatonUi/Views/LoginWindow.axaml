@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HackatonUi.Views.LoginWindow"
+        Width="350" Height="400"
+        WindowStartupLocation="CenterOwner"
+        Background="#1e1e2f"
+        Title="Вход в систему">
+    
+    <Panel>
+        <!-- Фоновые декоративные элементы -->
+        <Ellipse Width="200" Height="200" Fill="#2a2a3f" Opacity="0.5" 
+                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                 Margin="-100 -100 0 0"/>
+        <Ellipse Width="150" Height="150" Fill="#3a3a5f" Opacity="0.3"
+                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                 Margin="0 0 -50 -50"/>
+        
+        <!-- Основной контент -->
+        <StackPanel Margin="30" Spacing="20" VerticalAlignment="Center">
+            <TextBlock Text="Добро пожаловать" 
+                       FontSize="20" 
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 10"/>
+            
+            <StackPanel Spacing="10">
+                <TextBox x:Name="UsernameBox" Watermark="Логин" 
+                         Classes="RoundedTextBox"
+                         Background="#2a2a3f" 
+                         Foreground="White"
+                         CaretBrush="White"
+                         BorderBrush="#3a3a5f"/>
+                
+                <TextBox x:Name="PasswordBox" Watermark="Пароль" PasswordChar="•"
+                         Classes="RoundedTextBox"
+                         Background="#2a2a3f"
+                         Foreground="White"
+                         CaretBrush="White"
+                         BorderBrush="#3a3a5f"/>
+            </StackPanel>
+            
+            <Button Content="Войти" Click="Login_Click"
+                    Classes="PrimaryButton"
+                    HorizontalAlignment="Stretch"/>
+            
+            <TextBlock x:Name="ErrorText" Foreground="#ff6b6b" 
+                       TextWrapping="Wrap" HorizontalAlignment="Center"/>
+            
+            <TextBlock HorizontalAlignment="Center">
+                <Button Content="Создать аккаунт" Click="Register_Click"
+                        Classes="TextButton"
+                        HorizontalAlignment="Center"/>
+            </TextBlock>
+        </StackPanel>
+    </Panel>
+    
+    <Window.Styles>
+        <Style Selector="TextBox.RoundedTextBox">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        
+        <Style Selector="Button.PrimaryButton">
+            <Setter Property="Background" Value="#4a4a7f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="Button.PrimaryButton:pointerover">
+            <Setter Property="Background" Value="#5a5a8f"/>
+        </Style>
+        
+        <Style Selector="Button.PrimaryButton:pressed">
+            <Setter Property="Background" Value="#3a3a6f"/>
+        </Style>
+        
+        <Style Selector="Button.TextButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#a0a0d0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.TextButton:pointerover">
+            <Setter Property="Foreground" Value="#c0c0f0"/>
+        </Style>
+    </Window.Styles>
+</Window>

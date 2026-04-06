@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:HackatonUi.ViewModels"
+             xmlns:models="clr-namespace:HackatonUi.Models"
+             xmlns:conv="clr-namespace:HackatonUi.Converters"
+             x:Class="HackatonUi.Views.ControlView"
+             x:DataType="vm:ControlViewModel"
+             Background="#1e1e2f">
+  <UserControl.Resources>
+    <conv:TaskCompletionToBrushConverter x:Key="TaskCompletionToBrushConverter"/>
+    <conv:DecisionStatusToBrushConverter x:Key="DecisionStatusToBrushConverter"/>
+  </UserControl.Resources>
+  <StackPanel Margin="10" Spacing="10">
+    <TextBlock Text="Контроль заданий" FontSize="20" FontWeight="Bold" Foreground="White"/>
+    <!-- Фильтр по статусу -->
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <TextBlock Text="Фильтр статуса:" Foreground="White" VerticalAlignment="Center"/>
+      <ComboBox Width="200"
+                ItemsSource="{Binding Statuses}"
+                SelectedItem="{Binding SelectedStatusItem, Mode=TwoWay}">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding StatusName}" Foreground="White"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
+    </StackPanel>
+    <!-- Список заданий карточками -->
+    <ItemsControl ItemsSource="{Binding FilteredTasks}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate x:DataType="models:InspectionTask">
+          <Expander IsExpanded="False">
+            <!-- Заголовок карточки -->
+            <Expander.Header>
+              <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="{Binding Description}" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Foreground="White" Text="{Binding BuildingId, StringFormat='(Здание ID: {0})'}"/>
+              </StackPanel>
+            </Expander.Header>
+            <!-- Содержимое раскрытия – подробная информация и список решений -->
+            <Border BorderBrush="White" BorderThickness="0,0,0,1" Margin="0,5,0,0" Padding="5">
+              <StackPanel Spacing="5">
+                <TextBlock Foreground="White" Text="{Binding StartDate, StringFormat='Начало: ({0:dd.MM.yyyy})'}"/>
+                <TextBlock Foreground="White" Text="{Binding EndDate, StringFormat='Конец: ({0:dd.MM.yyyy})'}"/>
+                <TextBlock Text="Решения:" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+                <ItemsControl ItemsSource="{Binding Decisions}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:TaskDecision">
+                      <StackPanel Orientation="Horizontal" Spacing="5">
+                        <TextBlock Text="{Binding Description}" 
+                                   Foreground="{Binding StatusId, Converter={StaticResource DecisionStatusToBrushConverter}}"/>
+                        <TextBlock Text="{Binding StatusId, StringFormat=' (Статус ID: {0})'}" Foreground="White"/>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!-- Нижняя полоска для задания -->
+                <Border Height="5" Margin="0,5,0,0" CornerRadius="2"
+                        Background="{Binding Decisions, Converter={StaticResource TaskCompletionToBrushConverter}}"/>
+              </StackPanel>
+            </Border>
+          </Expander>
+        </DataTemplate>
+
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </StackPanel>
+</UserControl>

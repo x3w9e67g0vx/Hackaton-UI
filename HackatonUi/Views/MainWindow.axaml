@@ -1,0 +1,84 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:HackatonUi.ViewModels"
+        xmlns:anim="https://github.com/whistyun/AnimatedImage.Avalonia"
+        x:Class="HackatonUi.Views.MainWindow"
+        Title="Хакатон"
+        Width="1200" Height="700"
+        Background="#1e1e2f"
+        DataContext="{DynamicResource MainWindowViewModel}"
+        x:DataType="vm:MainWindowViewModel">
+
+    <Window.Resources>
+        <vm:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding SidebarWidth}" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="#2c2c3c"
+                PointerEntered="Sidebar_PointerEntered"
+                PointerExited="Sidebar_PointerExited">
+            <StackPanel>
+                <Button Tag="Home" Click="Navigate" Background="Transparent" HorizontalAlignment="Center">
+                    <Image Source="/Assets/homepage.png" Width="75" Height="70"/>
+                </Button>
+
+                <Button Tag="Objects" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/iconbuildings_bar.gif"
+                               Width="70" Height="68"/><!-- Source="/Assets/iconbuildings.png"  -->
+                        <TextBlock Text="Карточки зданий" Margin="3,5,70,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Tag="Documents" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/documents_bar.gif" Width="70" Height="68"/>
+                        <!-- <Image Source="/Assets/documents.png"  -->
+                        <TextBlock Text="Документы" Margin="3,5,70,0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                </Button>
+                
+                <Button Tag="XmlImport" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/xml_bar.png" Width="70" Height="68"/>
+                        <!-- <Image Source="/Assets/xml.png" -->
+                        <TextBlock Text="Импорт XML" Margin="30,5,70,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Tag="Protocols" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/protocol_bar.png" Width="70" Height="68"/>
+                        <!--<Image Source="/Assets/protocol.png" -->
+                        <TextBlock Text="Протоколы решений" Margin="3,5,70,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Tag="Control" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/control_bar.gif" Width="70" Height="68"/>
+                        <!-- <Image Source="/Assets/control.png"  -->
+                        <TextBlock Text="Контроль исполнения" Margin="3,5,70,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Tag="Users" Click="Navigate" Background="White" Foreground="Black" Margin="0">
+                    <StackPanel Orientation="Vertical">
+                        <Image anim:ImageBehavior.AnimatedSource="avares://HackatonUi/Assets/user_bar.gif" Width="70" Height="70"/>
+                        <!-- <Image Source="/Assets/user.png" -->
+                        <TextBlock Text="Пользователи" Margin="25,5,60,0" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Main content -->
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}" />
+    </Grid>
+</Window>

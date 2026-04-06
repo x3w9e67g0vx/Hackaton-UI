@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HackatonUi.Views.AddTaskDecisionWindow"
+        Title="Добавить решение"
+        Width="400" Height="300"
+        WindowStartupLocation="CenterScreen"
+        Background="#1e1e2f">
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Добавление решения" 
+                   Foreground="White" 
+                   FontSize="20" HorizontalAlignment="Center"/>
+        <TextBlock Text="Задача ID:" Foreground="White"/>
+        <TextBox x:Name="TaskIdBox" IsReadOnly="True" Background="#2a2a3f" Foreground="White"/>
+        <TextBlock Text="Описание решения:" Foreground="White"/>
+        <TextBox x:Name="DescriptionBox"
+                 Background="#2a2a3f" Foreground="White" Watermark="Введите описание"/>
+        <TextBlock Text="ID статуса:" Foreground="White"/>
+        <TextBox x:Name="StatusIdBox"
+                 Background="#2a2a3f" Foreground="White" Watermark="Введите ID статуса"/>
+        <Button Content="Сохранить решение" Click="Save_Click"
+                Background="#4a4a7f" Foreground="White" Padding="10"/>
+        <TextBlock x:Name="StatusText" Foreground="#ff6b6b"/>
+    </StackPanel>
+</Window>

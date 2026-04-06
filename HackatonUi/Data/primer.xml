@@ -1,0 +1,19 @@
+<Buildings>
+    <Building>
+        <Address>г. Москва, ул. Пушкина, д.2</Address>
+        <CadastralNumber>123456789</CadastralNumber>
+        <Floors>10</Floors>
+        <Area>2400</Area>
+        <BuildingTypeId>1</BuildingTypeId>
+        <Attributes>
+            <Attribute section="Общие" key="Материал" value="Кирпич" />
+            <Attribute section="Технические" key="Год постройки" value="1980" />
+        </Attributes>
+        <Documents>
+            <Document path="act2.pdf" uploader="admin" date="2025-05-01"/>
+        </Documents>
+        <ControlDates>
+            <ControlDate title="Проверка слива" dueDate="2024-08-01" />
+        </ControlDates>
+    </Building>
+</Buildings>

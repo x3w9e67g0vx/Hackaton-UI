@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:HackatonUi.Models"
+             xmlns:viewModels="clr-namespace:HackatonUi.ViewModels"
+             x:Class="HackatonUi.Views.DocumentsView"
+             x:DataType="viewModels:DocumentsViewModel">
+  <StackPanel Margin="10" Spacing="10">
+    <!-- Заголовок окна -->
+    <TextBlock Text="Документы по зданиям" 
+               FontSize="20" 
+               FontWeight="Bold" 
+               Foreground="White"/>
+    <!-- Кнопка для открытия окна добавления документа -->
+    <Button Content="Добавить документ" 
+            Click="OpenAddDocument_Click" 
+            Background="#4a4a7f" 
+            Foreground="White"
+            Padding="10" />
+    <!-- Список зданий с документами -->
+    <ListBox ItemsSource="{Binding Buildings}" Foreground="White">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:Building">
+          <StackPanel Margin="5" Spacing="5">
+            <!-- Адрес здания -->
+            <TextBlock Text="{Binding Address}" 
+                       FontWeight="Bold" 
+                       Foreground="White"/>
+            <!-- Список документов для данного здания -->
+            <ItemsControl ItemsSource="{Binding Documents}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:BuildingDocument">
+                  <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock Text="{Binding FilePath}" Foreground="White"/>
+                    <TextBlock Text="Загрузил:" Foreground="White"/>
+                    <TextBlock Text="{Binding UploadedBy}" Foreground="White"/>
+                    <TextBlock Text="{Binding UploadedAt, StringFormat='({0:dd.MM.yyyy})'}" Foreground="White"/>
+                  </StackPanel>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Separator/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
+</UserControl>

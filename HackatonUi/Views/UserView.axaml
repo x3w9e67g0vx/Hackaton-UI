@@ -1,0 +1,149 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:HackatonUi.ViewModels"
+             xmlns:models="clr-namespace:HackatonUi.Models"
+             x:Class="HackatonUi.Views.UserView"
+             x:DataType="vm:UserViewModel"
+             Background="#1e1e2f"
+             Padding="20">
+    
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4a4a7f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#5a5a8f"/>
+        </Style>
+        
+        <Style Selector="Button.delete">
+            <Setter Property="Background" Value="#ff6b6b"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        
+        <Style Selector="Button.delete:pointerover">
+            <Setter Property="Background" Value="#ff5252"/>
+        </Style>
+        
+        <Style Selector="ComboBox">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Background" Value="#2a2a3f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#3a3a5f"/>
+        </Style>
+        
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        
+        <Style Selector="ItemsControl">
+            <Setter Property="Margin" Value="0,10,0,0"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <Panel>
+        <!-- Фоновые декоративные элементы -->
+        <Ellipse Width="180" Height="180" Fill="#2a2a3f" Opacity="0.5" 
+                 HorizontalAlignment="Right" VerticalAlignment="Top"
+                 Margin="0 -90 -90 0"/>
+        <Ellipse Width="120" Height="120" Fill="#3a3a5f" Opacity="0.3"
+                 HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                 Margin="-60 0 0 -60"/>
+        
+        <StackPanel Spacing="15">
+            <TextBlock Text="Назначение пользователей на решения" 
+                       FontSize="20" FontWeight="Bold" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10"/>
+            
+            
+            <!-- Выбор решения -->
+            <Border Background="#252538" CornerRadius="8" Padding="15">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Выберите решение:" FontWeight="Bold"/>
+                    <ComboBox ItemsSource="{Binding Decisions}" 
+                              SelectedItem="{Binding SelectedDecision, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}" Padding="5"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+            
+            <!-- Выбор пользователя -->
+            <Border Background="#252538" CornerRadius="8" Padding="15">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Назначить пользователя:" FontWeight="Bold"/>
+                    <ComboBox ItemsSource="{Binding Viewers}" 
+                              SelectedItem="{Binding SelectedViewer, Mode=TwoWay}"
+                              HorizontalAlignment="Stretch">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Username}" Padding="5"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+            
+            <!-- Кнопка назначения -->
+            <Button Content="Назначить" Click="AssignButton_Click"
+                    HorizontalAlignment="Center" Margin="0,10"
+                    IsEnabled="{Binding IsUserAllowed}"/>
+            
+            <!-- Группированный список назначений -->
+            <TextBlock Text="Текущие назначения:" 
+                       FontWeight="Bold" FontSize="16"
+                       Margin="0,20,0,10"/>
+            
+            <ItemsControl ItemsSource="{Binding GroupedAssignments}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:GroupedAssignment">
+                        <Border Background="#252538" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+                            <StackPanel>
+                                <!-- Заголовок группы -->
+                                <TextBlock Text="{Binding DecisionDescription}" 
+                                           FontSize="16" FontWeight="Bold"
+                                           Margin="0,0,0,10"/>
+                                
+                                <!-- Внутренний список назначений -->
+                                <ItemsControl ItemsSource="{Binding Assignments}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="models:DecisionAssignmentInfo">
+                                            <Grid ColumnDefinitions="*,Auto" Margin="0,5">
+                                                <TextBlock Grid.Column="0">
+                                                    <Run Text="Пользователь "/>
+                                                    <Run Text="{Binding Username}" FontWeight="Bold"/>
+                                                    <Run Text=" назначен на решение: "/>
+                                                    <Run Text="{Binding DisplayText}" FontStyle="Italic"/>
+                                                </TextBlock>
+                                                
+                                                <!-- Кнопка удаления -->
+                                                <Button Content="Удалить" Grid.Column="1"
+                                                        Click="DeleteButton_Click"
+                                                        Tag="{Binding}"
+                                                        Classes="delete"
+                                                        IsEnabled="{Binding IsUserAllowed}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Panel>
+</UserControl>

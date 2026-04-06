@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HackatonUi.Views.DeleteBuildingWindow"
+        Title="Удаление здания"
+        Width="250" Height="300"
+        WindowStartupLocation="CenterScreen"
+        Background="#1e1e2f">
+    
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Выберите здание для удаления" Foreground="White"/>
+        <ComboBox x:Name="BuildingComboBox"
+                  Background="#2a2a3f" Foreground="White"/>
+
+        <Button Content="Удалить" Click="Delete_Click"
+                Background="#ff3b3b" Foreground="White" Padding="10"/>
+        
+        <TextBlock x:Name="StatusText" Foreground="#ff6b6b"/>
+    </StackPanel>
+</Window>

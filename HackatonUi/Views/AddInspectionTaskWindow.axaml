@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HackatonUi.Views.AddInspectionTaskWindow"
+        Title="Добавить задачу"
+        Width="400" Height="450"
+        WindowStartupLocation="CenterScreen"
+        Background="#1e1e2f">
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="Добавление задачи" 
+                   Foreground="White" 
+                   FontSize="20" HorizontalAlignment="Center"/>
+        <!-- Выбор здания из списка -->
+        <TextBlock Text="Выберите здание:" Foreground="White"/>
+        <ComboBox x:Name="BuildingComboBox"
+                  Background="#2a2a3f" Foreground="White"/>
+        <TextBlock Text="Описание задачи:" Foreground="White"/>
+        <TextBox x:Name="DescriptionBox"
+                 Background="#2a2a3f" Foreground="White" Watermark="Введите описание"/>
+        <TextBlock Text="Дата начала:" Foreground="White"/>
+        <DatePicker x:Name="StartDatePicker" Background="#2a2a3f" Foreground="White"/>
+        <TextBlock Text="Дата окончания:" Foreground="White"/>
+        <DatePicker x:Name="EndDatePicker" Background="#2a2a3f" Foreground="White"/>
+        <Button Content="Сохранить задачу" Click="Save_Click"
+                Background="#4a4a7f" Foreground="White" Padding="10"/>
+        <TextBlock x:Name="StatusText" Foreground="#ff6b6b"/>
+    </StackPanel>
+</Window>

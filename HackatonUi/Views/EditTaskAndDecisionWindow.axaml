@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:models="clr-namespace:HackatonUi.Models"
+        xmlns:viewModels="clr-namespace:HackatonUi.ViewModels"
+        x:Class="HackatonUi.Views.EditTaskAndDecisionWindow"
+        Title="Редактирование задачи и решений"
+        Width="500" Height="600"
+        Background="#1e1e2f"
+        x:DataType="viewModels:ProtocolsViewModel">
+  <StackPanel Margin="10" Spacing="10">
+    
+    <TextBlock Text="Выберите задачу:" FontSize="16" FontWeight="Bold"/>
+    <ComboBox ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}" Width="400">
+      <ComboBox.ItemTemplate>
+        <DataTemplate x:DataType="models:InspectionTask">
+          <TextBlock Text="{Binding Description}"/>
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+
+    <TextBlock Text="Описание задачи:" FontSize="14"/>
+    <TextBox Text="{Binding SelectedTask.Description}" Width="400"/>
+
+    <TextBlock Text="Дата начала:" FontSize="14"/>
+    <DatePicker SelectedDate="{Binding SelectedTask.StartDate}"/>
+
+    <TextBlock Text="Дата окончания:" FontSize="14"/>
+    <DatePicker SelectedDate="{Binding SelectedTask.EndDate}"/>
+
+    <TextBlock Text="ID здания:" FontSize="14"/>
+    <TextBox Text="{Binding SelectedTask.BuildingId}" Width="100"/>
+
+    <TextBlock Text="Выберите решение:" FontSize="16" FontWeight="Bold"/>
+    <ComboBox ItemsSource="{Binding SelectedTask.Decisions}" SelectedItem="{Binding SelectedDecision}" Width="400">
+      <ComboBox.ItemTemplate>
+        <DataTemplate x:DataType="models:TaskDecision">
+          <TextBlock Text="{Binding Description}"/>
+        </DataTemplate>
+      </ComboBox.ItemTemplate>
+    </ComboBox>
+
+    <TextBlock Text="Описание решения:" FontSize="14"/>
+    <TextBox Text="{Binding SelectedDecision.Description}" Width="400"/>
+
+    <TextBlock Text="Статус решения:" FontSize="14"/>
+    <TextBox Text="{Binding SelectedDecision.StatusId}" Width="100"/>
+
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <Button Content="Сохранить изменения" Click="SaveChanges_Click"/>
+      <Button Content="Закрыть" Click="Close_Click"/>
+    </StackPanel>
+
+  </StackPanel>
+</Window>

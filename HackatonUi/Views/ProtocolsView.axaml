@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:HackatonUi.Models"
+             xmlns:vm="clr-namespace:HackatonUi.ViewModels"
+             x:Class="HackatonUi.Views.ProtocolsView"
+             x:DataType="vm:ProtocolsViewModel"
+             Background="#1e1e2f">
+  <StackPanel Margin="10" Spacing="10">
+    <!-- Заголовок окна -->
+    <TextBlock Text="Задачи и решения" 
+               FontSize="20" 
+               FontWeight="Bold" 
+               Foreground="White"/>
+    
+    <!-- Кнопки добавления -->
+    <StackPanel Orientation="Horizontal" Spacing="10">
+      <Button Content="Добавить задачу"
+              Click="OpenAddTask_Click"
+              Background="#4a4a7f" Foreground="White" Padding="10"  IsEnabled="{Binding IsUserAllowed}"/>
+      <Button Content="Добавить решение"
+              Click="OpenAddDecision_Click"
+              Background="#4a4a7f" Foreground="White" Padding="10"/>
+      <Button Content="Удалить задачу" Padding="10" Click="DeleteTaskButton_Click"
+              Background="#ff6b6b" Foreground="White"  IsEnabled="{Binding IsUserAllowed}"/>
+      <Button Content="Удалить решение" Padding="10" Click="DeleteDecisionButton_Click"
+              Background="#ff6b6b" Foreground="White"  IsEnabled="{Binding IsUserAllowed}"/>
+      <Button Content="Редактировать задание и решение"
+              Command="{Binding EditTaskAndDecisionCommand}"
+              IsEnabled="{Binding IsUserAllowed}" 
+              Background="#4a4a7f" Foreground="White" Padding="10"/>
+    </StackPanel>
+    
+    <!-- Поиск по ID здания (если необходимо) -->
+    <StackPanel Orientation="Horizontal" Spacing="5">
+      <TextBox x:Name="SearchBox" Width="200" Watermark="Введите ID здания"/>
+      <Button Content="Поиск" Click="Search_Click"
+              Background="#4a4a7f" Foreground="White"/>
+    </StackPanel>
+    
+    <!-- Список задач -->
+    <ListBox x:Name="TaskListBox" 
+             ItemsSource="{Binding Tasks}" 
+             SelectedItem="{Binding SelectedTask, Mode=TwoWay}" 
+             Foreground="White">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:InspectionTask">
+          <StackPanel Margin="5" Spacing="5">
+            <TextBlock Text="{Binding Description}" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Foreground="White" Text="{Binding BuildingId, StringFormat='Здание ID: {0}'}"/>
+            <TextBlock Foreground="White" Text="{Binding StartDate, StringFormat='Начало: ({0:dd.MM.yyyy})'}"/>
+            <TextBlock Foreground="White" Text="{Binding EndDate, StringFormat='Конец: ({0:dd.MM.yyyy})'}"/>
+            <TextBlock Text="Решения:" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+            <ListBox ItemsSource="{Binding Decisions}" 
+                     SelectedItem="{Binding SelectedDecision, Mode=TwoWay}"
+                     Foreground="White">
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:TaskDecision">
+                  <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="{Binding Description}" Foreground="White"/>
+                    <TextBlock Text="{Binding StatusId, StringFormat='Статус ID: {0}'}" Foreground="White"/>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </StackPanel>
+</UserControl>

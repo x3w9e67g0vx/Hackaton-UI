@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="HackatonUi/App.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddAttributeWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddBuildingWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddDocumentWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddDocumentWindow.axaml.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddInspectionTaskWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/AddTaskDecisionWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/ControlView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/DeleteBuildingWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/DocumentView.axaml.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/DocumentsView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/EditBuildingWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/EditSolutionWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/EditTaskAndDecisionWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/HomeView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/LoginRegisterView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/LoginRegisterWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/LoginWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/MainWIndowcopy.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/MainWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/ObjectManagementView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/ObjectsView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/ProtocolView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/ProtocolsView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/RegisterWindow.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/UserView.axaml" value="HackatonUi/HackatonUi.csproj" />
+        <entry key="HackatonUi/Views/XmlImportView.axaml" value="HackatonUi/HackatonUi.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

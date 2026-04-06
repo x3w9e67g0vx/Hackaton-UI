@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackatonUi", "HackatonUi\HackatonUi.csproj", "{3A41DD55-EF3E-47FF-AFA2-CC90D069F42C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackatonUi.Tests", "HackatonUi.Tests\HackatonUi.Tests.csproj", "{A1CE3930-12B5-4D58-9713-5AAF17F1307D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A41DD55-EF3E-47FF-AFA2-CC90D069F42C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A41DD55-EF3E-47FF-AFA2-CC90D069F42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A41DD55-EF3E-47FF-AFA2-CC90D069F42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A41DD55-EF3E-47FF-AFA2-CC90D069F42C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1CE3930-12B5-4D58-9713-5AAF17F1307D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1CE3930-12B5-4D58-9713-5AAF17F1307D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1CE3930-12B5-4D58-9713-5AAF17F1307D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1CE3930-12B5-4D58-9713-5AAF17F1307D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
